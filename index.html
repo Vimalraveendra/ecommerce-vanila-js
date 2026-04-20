@@ -19,7 +19,46 @@
     </button>
   </header>
 
+  <main class="main">
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <h3>Category</h3>
+        <div class="filter-group" id="categoryFilters"></div>
+      </div>
 
+      <div class="sidebar-section">
+        <h3>Sort by</h3>
+        <div class="dropdown" id="categoryDropdown">
+          <button class="dropdown__trigger">
+            <span id="selectedCategory">Default</span>
+            <span class="dropdown__arrow">⌄</span>
+
+          </button>
+
+          <ul class="dropdown__menu">
+            <li data-value="default">Default</li>
+            <li data-value="price-asc">Price: Low to High</li>
+            <li data-value="price-desc">Price: High to Low</li>
+            <li data-value="title-asc">Name: A to Z</li>
+            <li data-value="rating-desc">Top Rated</li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="sidebar-section">
+        <h3>Max Price</h3>
+        <div class="price-range">
+          <input type="range" id="priceRange" min="0" max="500" value="500" step="10">
+          <label>Up to $<span id="priceLabel">700</span></label>
+        </div>
+      </div>
+    </aside>
+
+    <section class="content">
+
+      <div class="products-grid" id="productsGrid"></div>
+    </section>
+  </main>
 
   <script type="module" src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule="" src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.js"></script>
