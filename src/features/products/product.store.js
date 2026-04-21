@@ -14,6 +14,10 @@ export const setProducts = (data) => {
 export const getProducts = () => {
   return [...productStore.products];
 };
+
+export const getFilters = () => {
+  return productStore.filters;
+};
 export const setMaxPrice = (value) => {
   productStore.filters.maxPrice = value;
 };
