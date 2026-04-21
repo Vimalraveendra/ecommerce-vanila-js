@@ -1,13 +1,11 @@
-import {
-  setProducts,
-  getFilters,
-} from "../features/products/products.store.js";
+import { setProducts, getFilters } from "../features/products/product.store.js";
 import { getVisibleProducts } from "../features/products/products.service.js";
 import {
   renderProducts,
   renderSidebar,
 } from "../features/products/products.ui.js";
-import { fetchProducts } from "../features/products/products.api.js";
+
+import { fetchProducts } from "../features/products/product.api.js";
 import { getCartCount } from "../features/cart/cart.store.js";
 
 export async function ProductsPage() {

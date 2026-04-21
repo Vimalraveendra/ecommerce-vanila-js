@@ -1,22 +1,25 @@
-import { ProductsPage } from "./pages/products.page.js";
-import { CartPage } from "./pages/cart.page.js";
-
+import { ProductsPage } from "./src/pages/products.page.js";
+import { CartPage } from "./src/pages/cart.page.js";
 import {
   setCategory,
   setMaxPrice,
   setSearchText,
   setSortText,
-} from "./features/products/products.store.js";
+} from "./src/features/products/product.store.js";
 import {
   addToCart,
   decreaseQty,
   toggleCart,
-} from "./features/cart/cart.store.js";
+} from "./src/features/cart/cart.store.js";
 
 const dropdown = document.getElementById("categoryDropdown");
 const trigger = dropdown.querySelector(".dropdown__trigger");
 const menu = dropdown.querySelector(".dropdown__menu");
 const selected = document.getElementById("selectedCategory");
+
+document.addEventListener("DOMContentLoaded", () => {
+  ProductsPage();
+});
 
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("add-btn")) {
@@ -82,8 +85,4 @@ document.querySelector(".cart-overlay").addEventListener("click", (e) => {
     decreaseQty(id);
   }
   CartPage();
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  ProductsPage();
 });

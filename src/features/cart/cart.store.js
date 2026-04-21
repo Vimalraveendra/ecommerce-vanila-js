@@ -1,4 +1,4 @@
-import { getProducts } from "../products/products.store.js";
+import { getProducts } from "../products/product.store.js";
 import { updateCartCount, updateCartTotal } from "./cart.service.js";
 
 export const cartStore = {
