@@ -1,4 +1,5 @@
-import { getCategories } from "./products.service";
+import { getCategories } from "./products.service.js";
+import { inCartItem } from "../cart/cart.store.js";
 
 export function renderProductCard(product, inCart) {
   return `
