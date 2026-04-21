@@ -39,13 +39,13 @@ export const sortedProducts = (products, sortText) => {
   });
 };
 
-export function getVisibleProducts(products, productStore) {
+export function getVisibleProducts(products, filters) {
   products = filteredProducts(products, {
-    searchText: productStore.filters.searchText,
-    category: productStore.filters.category,
-    maxPrice: productStore.filters.maxPrice,
+    searchText: filters.searchText,
+    category: filters.category,
+    maxPrice: filters.maxPrice,
   });
-  products = sortedProducts(products, productStore.filters.sortText);
+  products = sortedProducts(products, filters.sortText);
 
   return products;
 }

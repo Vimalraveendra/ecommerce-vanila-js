@@ -596,3 +596,18 @@
             display: block;
         }
 
+
+        /* RESPONSIVE */
+        @media (max-width: 640px) {
+            .main {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .cart-overlay {
+                width: 100%;
+            }
+        }

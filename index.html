@@ -1,11 +1,11 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shopping Cart</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShopVanilla — E-Commerce</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -21,10 +21,12 @@
 
   <main class="main">
     <aside class="sidebar">
+
       <div class="sidebar-section">
         <h3>Category</h3>
         <div class="filter-group" id="categoryFilters"></div>
       </div>
+
 
       <div class="sidebar-section">
         <h3>Sort by</h3>
@@ -32,7 +34,6 @@
           <button class="dropdown__trigger">
             <span id="selectedCategory">Default</span>
             <span class="dropdown__arrow">⌄</span>
-
           </button>
 
           <ul class="dropdown__menu">
@@ -43,8 +44,8 @@
             <li data-value="rating-desc">Top Rated</li>
           </ul>
         </div>
-
       </div>
+
       <div class="sidebar-section">
         <h3>Max Price</h3>
         <div class="price-range">
@@ -55,7 +56,6 @@
     </aside>
 
     <section class="content">
-
       <div class="products-grid" id="productsGrid"></div>
     </section>
   </main>

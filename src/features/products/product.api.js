@@ -4,6 +4,6 @@ export async function fetchProducts() {
     const products = await res.json();
     return products;
   } catch (err) {
-    console.log("error", err.message);
+    console.log("error", err);
   }
 }
