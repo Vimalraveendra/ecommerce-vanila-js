@@ -15,6 +15,11 @@ export const getProducts = () => {
   return [...productStore.products];
 };
 
+export const getProductById = (id) => {
+  const products = getProducts();
+  const product = products.find((p) => p.id === id);
+  return product ? product : "Not Found";
+};
 export const getFilters = () => {
   return productStore.filters;
 };

@@ -1,6 +1,7 @@
 import { ProductsPage } from "./src/pages/products.page.js";
 import { CartPage } from "./src/pages/cart.page.js";
 import {
+  getProductById,
   setCategory,
   setMaxPrice,
   setSearchText,
@@ -11,6 +12,7 @@ import {
   decreaseQty,
   toggleCart,
 } from "./src/features/cart/cart.store.js";
+import { showToast } from "./utils.js";
 
 const dropdown = document.getElementById("categoryDropdown");
 const trigger = dropdown.querySelector(".dropdown__trigger");
@@ -23,8 +25,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("add-btn")) {
-    const id = e.target.dataset.id;
-    addToCart(Number(id));
+    const id = Number(e.target.dataset.id);
+    const product = getProductById(id);
+    addToCart(id);
+    showToast(`${product.title} added to cart`);
     ProductsPage();
   }
 });
@@ -78,11 +82,14 @@ document.querySelector(".cart-overlay").addEventListener("click", (e) => {
   const cartItem = e.target.closest(".cart-item");
   if (!cartItem) return;
   const id = Number(e.target.dataset.id);
+  const product = getProductById(id);
   if (e.target.classList.contains("cart-item__btn--increase")) {
     addToCart(id);
+    showToast(`${product.title} added to cart`);
   }
   if (e.target.classList.contains("cart-item__btn--decrease")) {
     decreaseQty(id);
+    showToast(`${product.title} removed from cart`);
   }
   CartPage();
   ProductsPage();

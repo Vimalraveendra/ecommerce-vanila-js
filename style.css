@@ -571,7 +571,7 @@
         /* TOAST */
         .toast {
             position: fixed;
-            bottom: 24px;
+            top:50% ;
             left: 50%;
             transform: translateX(-50%);
             background: #2C2C2A;
@@ -584,9 +584,10 @@
             pointer-events: none;
             white-space: nowrap;
             z-index: 200;
+            text-wrap: auto;
         }
 
-        .toast.show {
+        .toast--show {
             opacity: 1;
         }
 
