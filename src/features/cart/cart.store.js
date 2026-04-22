@@ -1,7 +1,8 @@
 import { getProducts } from "../products/product.store.js";
+import { loadCartItems, saveCartItems } from "./cart.service.js";
 
 export const cartStore = {
-  cartItems: [],
+  cartItems: loadCartItems(),
   isCartOpen: false,
 };
 export const getCartItems = () => {
@@ -18,6 +19,7 @@ export const addToCart = (id) => {
     const product = getProducts().find((p) => p.id === id);
     cartStore.cartItems.push({ ...product, qty: 1 });
   }
+  saveCartItems(cartStore.cartItems);
 };
 
 export const removeFromCart = (id) => {
@@ -31,6 +33,7 @@ export const decreaseQty = (id) => {
   } else {
     removeFromCart(id);
   }
+  saveCartItems(cartStore.cartItems);
 };
 
 export const toggleCart = () => {

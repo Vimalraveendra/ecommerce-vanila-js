@@ -85,4 +85,5 @@ document.querySelector(".cart-overlay").addEventListener("click", (e) => {
     decreaseQty(id);
   }
   CartPage();
+  ProductsPage();
 });
