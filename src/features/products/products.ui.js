@@ -22,7 +22,15 @@ export function renderProductCard(product, inCart) {
           </div>`;
 }
 
+export function renderNoProductsInfo(container) {
+  container.innerHTML = `<div class="no-products">No products found.<br>Try adjusting your filters.</div>`;
+}
+
 export function renderProducts(products, container) {
+  if (!products.length) {
+    renderNoProductsInfo(container);
+    return;
+  }
   container.innerHTML = products
     .map((product) => {
       const inCart = inCartItem(product.id);
