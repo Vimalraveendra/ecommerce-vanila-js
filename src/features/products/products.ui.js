@@ -1,4 +1,4 @@
-import { getCategories } from "./products.service.js";
+import { getCategories, renderStars } from "./products.service.js";
 import { inCartItem } from "../cart/cart.store.js";
 
 export function renderProductCard(product, inCart) {
@@ -10,7 +10,7 @@ export function renderProductCard(product, inCart) {
                 <div class="product-card__info">
                     <div class="product-card__title" title="${product.title}">${product.title}</div>
                     <div class="product-card__category">${product.category} </div>
-                    <div class="product-card__meta">${"★".repeat(Math.round(product.rating.rate))} 
+                    <div class="product-card__meta">${renderStars(product.rating.rate)} 
                     <span class="product-card__meta-text">${product.rating.rate}</span></div>
                 <div class="product-footer">
                     <span class="product-price">$${product.price.toFixed(2)}</span>

@@ -41,3 +41,10 @@ export function getVisibleProducts(products, filters) {
 
   return products;
 }
+
+export function renderStars(rate) {
+  const full = Math.floor(rate);
+  const half = rate - full >= 0.9 ? 1 : 0;
+  const empty = 5 - full - half;
+  return "★".repeat(full) + "☆".repeat(empty);
+}
