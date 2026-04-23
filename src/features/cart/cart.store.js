@@ -9,15 +9,15 @@ export const getCartItems = () => {
   return [...cartStore.cartItems];
 };
 
-export const addToCart = (id) => {
+export const addToCart = (id, qty = 1) => {
   const existingCartProduct = cartStore.cartItems.find(
     (item) => item.id === id,
   );
   if (existingCartProduct) {
-    existingCartProduct.qty++;
+    existingCartProduct.qty += qty;
   } else {
     const product = getProducts().find((p) => p.id === id);
-    cartStore.cartItems.push({ ...product, qty: 1 });
+    cartStore.cartItems.push({ ...product, qty });
   }
   saveCartItems(cartStore.cartItems);
 };
