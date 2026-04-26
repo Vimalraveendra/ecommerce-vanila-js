@@ -20,4 +20,8 @@ export function CheckoutPage() {
   const cartTotal = getCartTotal(cartItems);
   const totals = calculateTotals({ cartTotal, discount: 0, taxRate: 0.08 });
   renderCheckout(cartItems, container, totals);
+
+  document.getElementById("backLink").addEventListener("click", () => {
+    navigate("/");
+  });
 }
