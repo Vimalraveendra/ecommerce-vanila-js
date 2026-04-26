@@ -14,6 +14,7 @@ import { showToast } from "./utils.js";
 import { router } from "./router.js";
 import { fetchProducts } from "./src/features/products/product.api.js";
 import { getCartCount } from "./src/features/cart/cart.service.js";
+import { navigate } from "./router.js";
 
 function renderCartCount() {
   const cartItems = getCartItems();
@@ -23,6 +24,7 @@ function renderCartCount() {
   el.style.display = count > 0 ? "flex" : "none";
 }
 
+// INIT
 document.addEventListener("DOMContentLoaded", async () => {
   const products = await fetchProducts();
   setProducts(products);
@@ -31,6 +33,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 window.addEventListener("hashchange", router);
 
+// ADD TO CART
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("add-btn")) {
     const id = Number(e.target.dataset.id);
@@ -42,6 +45,7 @@ document.addEventListener("click", (e) => {
   }
 });
 
+// TOGGLE CART
 const handleCartToggle = () => {
   const isCartOpen = toggleCart();
   document.getElementById("cartOverlay").classList.toggle("open", isCartOpen);
@@ -74,4 +78,10 @@ document.querySelector(".cart-overlay").addEventListener("click", (e) => {
     CartPage();
     ProductsPage();
   }
+});
+
+// NAVIGATE TO CHECKOUT
+document.getElementById("checkoutBtn").addEventListener("click", () => {
+  handleCartToggle();
+  navigate("/checkout");
 });

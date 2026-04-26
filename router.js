@@ -1,5 +1,6 @@
 import { ProductsPage } from "./src/pages/products.page.js";
 import { ProductDetailsPage } from "./src/pages/product-details.page.js";
+import { CheckoutPage } from "./src/pages/checkout.page.js";
 
 export function router() {
   const path = window.location.hash.slice(1) || "/";
@@ -13,6 +14,10 @@ export function router() {
     {
       match: (path) => path.startsWith("/products/"),
       view: () => ProductDetailsPage({ id }),
+    },
+    {
+      match: (path) => path === "/checkout",
+      view: () => CheckoutPage(),
     },
   ];
 
