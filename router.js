@@ -1,10 +1,13 @@
+import { ProductsPage } from "./src/pages/products.page.js";
+import { ProductDetailsPage } from "./src/pages/product-details.page.js";
+
 export function router() {
   const path = window.location.hash.slice(1) || "/";
   const id = path.startsWith("/products/") && path.split("/")[2];
 
   const routes = [
     {
-      match: (match) => path === "/",
+      match: (path) => path === "/",
       view: () => ProductsPage(),
     },
     {
@@ -22,5 +25,4 @@ export function router() {
 
 export function navigate(path) {
   window.location.hash = path;
-  router();
 }

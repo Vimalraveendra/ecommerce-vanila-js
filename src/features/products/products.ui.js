@@ -4,7 +4,7 @@ import { inCartItem } from "../cart/cart.store.js";
 export function renderProductCard(product, inCart) {
   return `
           <div class="product-card">
-            <div class="product-card__img">
+            <div class="product-card__img" data-id="${product.id}">
                   <img src="${product.image}" alt="${product.title}">
               </div>
                 <div class="product-card__info">
