@@ -1,6 +1,6 @@
 import {
-  setProducts,
   getFilters,
+  getProducts,
   setCategory,
   setMaxPrice,
   setSearchText,
@@ -11,15 +11,10 @@ import {
   renderProducts,
   renderSidebar,
 } from "../features/products/products.ui.js";
-
-import { fetchProducts } from "../features/products/product.api.js";
-import { getCartItems } from "../features/cart/cart.store.js";
-import { getCartCount } from "../features/cart/cart.service.js";
 import { navigate } from "../../router.js";
 
-export async function ProductsPage() {
-  const products = await fetchProducts();
-  setProducts(products);
+export function ProductsPage() {
+  const products = getProducts();
   const filters = getFilters();
   const filteredProducts = getVisibleProducts(products, filters);
 
@@ -66,11 +61,6 @@ export async function ProductsPage() {
   const container = document.getElementById("productsGrid");
   renderProducts(filteredProducts, container);
   renderSidebar(products, filters.category);
-  const cartItems = getCartItems();
-  const count = getCartCount(cartItems);
-  const el = document.getElementById("cartCount");
-  el.textContent = count;
-  el.style.display = count > 0 ? "flex" : "none";
 
   const dropdown = document.getElementById("categoryDropdown");
   const trigger = dropdown.querySelector(".dropdown__trigger");

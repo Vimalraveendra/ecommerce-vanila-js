@@ -1,16 +1,32 @@
 import { ProductsPage } from "./src/pages/products.page.js";
 import { CartPage } from "./src/pages/cart.page.js";
-import { getProductById } from "./src/features/products/product.store.js";
+import {
+  getProductById,
+  setProducts,
+} from "./src/features/products/product.store.js";
 import {
   addToCart,
   decreaseQty,
   toggleCart,
+  getCartItems,
 } from "./src/features/cart/cart.store.js";
 import { showToast } from "./utils.js";
 import { router } from "./router.js";
+import { fetchProducts } from "./src/features/products/product.api.js";
+import { getCartCount } from "./src/features/cart/cart.service.js";
 
-document.addEventListener("DOMContentLoaded", () => {
-  ProductsPage();
+function renderCartCount() {
+  const cartItems = getCartItems();
+  const count = getCartCount(cartItems);
+  const el = document.getElementById("cartCount");
+  el.textContent = count;
+  el.style.display = count > 0 ? "flex" : "none";
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+  const products = await fetchProducts();
+  setProducts(products);
+  renderCartCount();
   router();
 });
 window.addEventListener("hashchange", router);
@@ -21,6 +37,7 @@ document.addEventListener("click", (e) => {
     const product = getProductById(id);
     addToCart(id);
     showToast(`${product.title} added to cart`);
+    renderCartCount();
     ProductsPage();
   }
 });
@@ -50,6 +67,11 @@ document.querySelector(".cart-overlay").addEventListener("click", (e) => {
     decreaseQty(id);
     showToast(`${product.title} removed from cart`);
   }
-  CartPage();
-  ProductsPage();
+  const path = window.location.hash.slice(1);
+  if (path.startsWith("/products/")) {
+    CartPage();
+  } else {
+    CartPage();
+    ProductsPage();
+  }
 });
