@@ -5,6 +5,8 @@ import {
 import { CartPage } from "../pages/cart.page.js";
 import { addToCart } from "../features/cart/cart.store.js";
 import { showToast } from "../../utils.js";
+import { getProductById } from "../features/products/product.store.js";
+import { navigate } from "../../router.js";
 
 export function ProductDetailsPage({ id }) {
   const container = document.getElementById("main");
@@ -14,6 +16,11 @@ export function ProductDetailsPage({ id }) {
   }
   const product = getProductById(Number(id));
   renderProductDetails(product, container);
+
+  // BACK TO PRODUCTS PAGE
+  document
+    .getElementById("backLink")
+    .addEventListener("click", () => navigate("/"));
 
   const qtyIncBtn = document.getElementById("qtyIncrease");
   const qtyDecBtn = document.getElementById("qtyDecrease");

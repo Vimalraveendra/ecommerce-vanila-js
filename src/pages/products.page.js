@@ -15,6 +15,7 @@ import {
 import { fetchProducts } from "../features/products/product.api.js";
 import { getCartItems } from "../features/cart/cart.store.js";
 import { getCartCount } from "../features/cart/cart.service.js";
+import { navigate } from "../../router.js";
 
 export async function ProductsPage() {
   const products = await fetchProducts();
@@ -74,5 +75,13 @@ export async function ProductsPage() {
     updateUIView();
     selected.textContent = e.target.textContent;
     dropdown.classList.remove("open");
+  });
+
+  // NAVIGATE TO PRODUCT DETAILS
+  document.addEventListener("click", (e) => {
+    const img = e.target.closest(".product-card__img");
+    if (!img) return;
+    const id = img.dataset.id;
+    navigate(`/products/${id}`);
   });
 }

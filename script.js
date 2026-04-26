@@ -7,10 +7,13 @@ import {
   toggleCart,
 } from "./src/features/cart/cart.store.js";
 import { showToast } from "./utils.js";
+import { router } from "./router.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   ProductsPage();
+  router();
 });
+window.addEventListener("hashchange", router);
 
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("add-btn")) {
