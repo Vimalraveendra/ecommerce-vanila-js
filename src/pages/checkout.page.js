@@ -1,9 +1,11 @@
 import { navigate } from "../../router.js";
 import { getCartItems } from "../features/cart/cart.store.js";
 import {
-  renderCheckoutSteps,
+  renderCheckout,
   renderEmptyCart,
 } from "../features/checkout/checkout.ui.js";
+import { getCartTotal } from "../features/cart/cart.service.js";
+import { calculateTotals } from "../features/checkout/checkout.service.js";
 
 export function CheckoutPage() {
   const container = document.getElementById("main");
@@ -15,5 +17,7 @@ export function CheckoutPage() {
     });
     return;
   }
-  renderCheckoutSteps();
+  const cartTotal = getCartTotal(cartItems);
+  const totals = calculateTotals({ cartTotal, discount: 0, taxRate: 0.08 });
+  renderCheckout(cartItems, container, totals);
 }

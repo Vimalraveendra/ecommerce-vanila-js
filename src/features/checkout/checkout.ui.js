@@ -31,7 +31,7 @@ export function renderCheckoutSteps() {
   return checkoutWrapper;
 }
 
-export function renderCheckout(container) {
+export function renderCheckout(cartItems, container, totals) {
   container.innerHTML = `  <div class="checkout-page">
       <div class="back-link" id="backLink">← Back to cart</div>
       </div>`;
