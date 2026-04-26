@@ -22,6 +22,47 @@ export async function ProductsPage() {
   setProducts(products);
   const filters = getFilters();
   const filteredProducts = getVisibleProducts(products, filters);
+
+  const main = document.getElementById("main");
+  main.innerHTML = `
+  <div class="products-page">
+   <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Category</h3>
+                <div class="filter-group" id="categoryFilters"></div>
+            </div>
+            <div class="sidebar-section">
+                <h3>Sort by</h3>
+                <div class="dropdown" id="categoryDropdown">
+                    <button class="dropdown__trigger">
+                        <span id="selectedCategory">Default</span>
+                        <span class="dropdown__arrow">⌄</span>
+                     </button>
+
+                    <ul class="dropdown__menu">
+                        <li data-value="default">Default</li>
+                        <li data-value="price-asc">Price: Low to High</li>
+                        <li data-value="price-desc">Price: High to Low</li>
+                        <li data-value="title-asc">Name: A to Z</li>
+                        <li data-value="rating-desc">Top Rated</li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="sidebar-section">
+                <h3>Max Price</h3>
+                <div class="price-range">
+                    <input type="range" id="priceRange" min="0" max="${filters.maxPrice}" value="${filters.maxPrice}" step="10">
+                    <label>Up to $<span id="priceLabel">${filters.maxPrice}</span></label>
+                </div>
+            </div>
+        </aside>
+
+        <section class="content">
+            <div class="products-grid" id="productsGrid"></div>
+        </section>
+        </div>
+        `;
   const container = document.getElementById("productsGrid");
   renderProducts(filteredProducts, container);
   renderSidebar(products, filters.category);

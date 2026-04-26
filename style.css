@@ -126,11 +126,19 @@
         }
 
         /* LAYOUT */
-        .main {
+      
+        .main {  
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0px 24px 24px;
+            min-height: calc(100vh - 56px);
+        }
+        .products-page {
             display: grid;
             grid-template-columns: 200px 1fr;
             min-height: calc(100vh - 56px);
         }
+       
 
         /* SIDEBAR */
         .sidebar {
