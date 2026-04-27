@@ -1,10 +1,16 @@
-let STORAGE_KEY = "order";
+import { loadOrder, saveOrder } from "./order-confirmation.service.js";
 
-export const saveOrder = (order) => {
-  sessionStorage.setItem(STORAGE_KEY, JSON.stringify(order));
+export const orderStore = {
+  order: loadOrder(),
 };
 
-export const loadOrder = () => {
-  const data = localStorage.getItem(STORAGE_KEY);
-  return data ? JSON.parse(data) : { orderNum: 0, total: 0 };
+export const setOrder = (total) => {
+  const orderNum = Math.floor(100000 + Math.random() * 900000);
+
+  orderStore.order = { orderNum: orderNum, total };
+  saveOrder(order);
+};
+
+export const getOrder = () => {
+  return orderStore.order;
 };
