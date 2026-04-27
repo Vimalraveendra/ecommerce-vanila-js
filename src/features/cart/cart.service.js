@@ -9,6 +9,10 @@ export const saveCartItems = (cartItems) => {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(cartItems));
 };
 
+export const removeCart = () => {
+  localStorage.removeItem(STORAGE_KEY);
+};
+
 export const getCartTotal = (cartItems) => {
   return cartItems.reduce((sum, item) => sum + item.price * item.qty, 0);
 };

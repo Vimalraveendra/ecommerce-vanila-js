@@ -1,5 +1,5 @@
 import { navigate } from "../../router.js";
-import { getCartItems } from "../features/cart/cart.store.js";
+import { getCartItems, clearCart } from "../features/cart/cart.store.js";
 import {
   renderCheckout,
   renderEmptyCart,
@@ -13,6 +13,7 @@ import {
   validateAddress,
   validatePayment,
 } from "../features/checkout/checkout.validation.js";
+import { CartPage } from "./cart.page.js";
 
 export function CheckoutPage() {
   const container = document.getElementById("main");
@@ -100,6 +101,26 @@ export function CheckoutPage() {
   });
 
   /* =====PLACE ORDER SECTION=====*/
+
+  const placeOrderBtn = document.getElementById("placeOrderBtn");
+  placeOrderBtn.addEventListener("click", () => {
+    if (!validateCheckout(selectedMethod)) return;
+    placeOrderBtn.textContent = "Processing...";
+    placeOrderBtn.disabled = true;
+    document.getElementById("step2").className =
+      "checkout-step checkout-step--done";
+    document
+      .getElementById("step2")
+      .querySelector(".checkout-step__num").textContent = "✓";
+    document.getElementById("step3").className =
+      "checkout-step checkout-step--active";
+
+    setTimeout(() => {
+      clearCart();
+      CartPage();
+      navigate("/order-confirmation");
+    }, 1500);
+  });
 }
 
 /* =====VALIDATE CHECKOUT FIELDS=====*/
