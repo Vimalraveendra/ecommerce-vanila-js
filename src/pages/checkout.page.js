@@ -6,6 +6,10 @@ import {
 } from "../features/checkout/checkout.ui.js";
 import { getCartTotal } from "../features/cart/cart.service.js";
 import { calculateTotals } from "../features/checkout/checkout.service.js";
+import {
+  validateAddress,
+  validatePayment,
+} from "../features/checkout/checkout.validation.js";
 
 export function CheckoutPage() {
   const container = document.getElementById("main");
@@ -61,4 +65,16 @@ export function CheckoutPage() {
     let v = e.target.value.replace(/\D/g, "");
     e.target.value = v;
   });
+
+  /* =====PLACE ORDER SECTION=====*/
+}
+
+/* =====VALIDATE CHECKOUT FIELDS=====*/
+function validateCheckout(method) {
+  let valid = true;
+  const isAddressValid = validateAddress();
+  let isPaymentValid = false;
+  if (method === "card") isPaymentValid = validatePayment(method);
+  if (!isAddressValid || !isPaymentValid) valid = false;
+  return valid;
 }
