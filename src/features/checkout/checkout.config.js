@@ -41,3 +41,5 @@ export const requiredCardFields = [
     validate: (value) => value !== "",
   },
 ];
+
+export const PROMO_CODES = ["SAVE10", "WELCOME"];

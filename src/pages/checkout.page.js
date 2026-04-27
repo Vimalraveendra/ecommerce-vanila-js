@@ -5,7 +5,10 @@ import {
   renderEmptyCart,
 } from "../features/checkout/checkout.ui.js";
 import { getCartTotal } from "../features/cart/cart.service.js";
-import { calculateTotals } from "../features/checkout/checkout.service.js";
+import {
+  calculateTotals,
+  validatePromoCode,
+} from "../features/checkout/checkout.service.js";
 import {
   validateAddress,
   validatePayment,
@@ -64,6 +67,36 @@ export function CheckoutPage() {
   document.getElementById("cvv").addEventListener("input", (e) => {
     let v = e.target.value.replace(/\D/g, "");
     e.target.value = v;
+  });
+
+  /* =====PROMO CODE SECTION=====*/
+
+  document.getElementById("promoBtn").addEventListener("click", () => {
+    if (promoApplied) return;
+    const promoCodeEl = document.getElementById("promoCode");
+    if (promoApplied) return;
+    const code = promoCodeEl.value.trim().toUpperCase();
+    const isValid = validatePromoCode(code);
+    const promoSuccessEl = document.getElementById("promoSuccess");
+    const promoErrorEl = document.getElementById("promoError");
+    if (!isValid) {
+      promoSuccessEl.style.display = "none";
+      promoErrorEl.style.display = "block";
+      promoErrorEl.textContent = "Invalid promo code";
+      return;
+    }
+    const totalCal = calculateTotals({ cartTotal, discount: 0.1 });
+    const { discount, tax, grandTotal } = totalCal;
+    promoApplied = true;
+    promoErrorEl.style.display = "none";
+    promoSuccessEl.style.display = "block";
+    promoCodeEl.disabled = true;
+    document.getElementById("tax").textContent = `$${tax.toFixed(2)}`;
+    document.getElementById("discountRow").style.display = "flex";
+    document.getElementById("discountAmt").textContent =
+      `-$${discount.toFixed(2)}`;
+    document.getElementById("grandTotalEl").textContent =
+      `$${grandTotal.toFixed(2)}`;
   });
 
   /* =====PLACE ORDER SECTION=====*/
