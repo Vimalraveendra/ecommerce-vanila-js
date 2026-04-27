@@ -144,6 +144,7 @@ export function renderCheckoutContent(cartItems, totals) {
               <button class="promo-btn" id="promoBtn">Apply</button>
             </div>
             <div class="promo-success" id="promoSuccess">Promo applied — 10% off!</div>
+             <div class="promo-error" id="promoError"></div>
 
             <div class="order-totals">
               <div class="total-row">

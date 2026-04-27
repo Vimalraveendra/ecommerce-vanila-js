@@ -1,3 +1,5 @@
+import { PROMO_CODES } from "./checkout.config.js";
+
 export const calculateTotals = ({
   cartTotal,
   discount = 0,
@@ -14,3 +16,7 @@ export const calculateTotals = ({
     grandTotal,
   };
 };
+
+export function validatePromoCode(code) {
+  return PROMO_CODES.includes(code);
+}
