@@ -1,5 +1,5 @@
 import { getProducts } from "../products/product.store.js";
-import { loadCartItems, saveCartItems } from "./cart.service.js";
+import { loadCartItems, saveCartItems, removeCart } from "./cart.service.js";
 
 export const cartStore = {
   cartItems: loadCartItems(),
@@ -42,3 +42,8 @@ export const toggleCart = () => {
 
 export const inCartItem = (id) =>
   cartStore.cartItems.find((item) => item.id === id);
+
+export const clearCart = () => {
+  cartStore.cartItems = [];
+  removeCart();
+};
