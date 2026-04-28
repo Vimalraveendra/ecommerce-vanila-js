@@ -14,6 +14,7 @@ import {
   validatePayment,
 } from "../features/checkout/checkout.validation.js";
 import { CartPage } from "./cart.page.js";
+import { setOrder } from "../features/order-confirmation/order-confirmation.store.js";
 
 export function CheckoutPage() {
   const container = document.getElementById("main");
@@ -28,6 +29,8 @@ export function CheckoutPage() {
   const cartTotal = getCartTotal(cartItems);
   const totals = calculateTotals({ cartTotal, discount: 0, taxRate: 0.08 });
   renderCheckout(cartItems, container, totals);
+  let grandTotalVal = 0;
+  grandTotalVal = totals.grandTotal;
 
   // BACK TO PRODUCTS
   document.getElementById("backLink").addEventListener("click", () => {
@@ -71,9 +74,8 @@ export function CheckoutPage() {
   });
 
   /* =====PROMO CODE SECTION=====*/
-
+  let promoApplied = false;
   document.getElementById("promoBtn").addEventListener("click", () => {
-    if (promoApplied) return;
     const promoCodeEl = document.getElementById("promoCode");
     if (promoApplied) return;
     const code = promoCodeEl.value.trim().toUpperCase();
@@ -88,6 +90,7 @@ export function CheckoutPage() {
     }
     const totalCal = calculateTotals({ cartTotal, discount: 0.1 });
     const { discount, tax, grandTotal } = totalCal;
+    grandTotalVal = grandTotal;
     promoApplied = true;
     promoErrorEl.style.display = "none";
     promoSuccessEl.style.display = "block";
@@ -118,6 +121,7 @@ export function CheckoutPage() {
     setTimeout(() => {
       clearCart();
       CartPage();
+      setOrder(grandTotalVal);
       navigate("/order-confirmation");
     }, 1500);
   });
