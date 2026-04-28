@@ -1,4 +1,4 @@
-export function renderOrderConfirm(container, orderNum, total) {
+export function renderOrderConfirmation(container, orderNum, total) {
   container.innerHTML = `
   <div class="success-page">
       <div class="success-icon">✓</div>
