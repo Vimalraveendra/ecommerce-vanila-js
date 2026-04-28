@@ -14,7 +14,7 @@ export function ProductDetailsPage({ id }) {
     renderProductNotFound(container);
     return;
   }
-  const product = getProductById(Number(id));
+  const product = getProductById(id);
   renderProductDetails(product, container);
 
   // BACK TO PRODUCTS PAGE
@@ -43,8 +43,15 @@ export function ProductDetailsPage({ id }) {
 
   // ADD PRODUCT TO CART
   document.getElementById("addToCartBtn").addEventListener("click", () => {
-    addToCart(Number(id), qty);
+    addToCart(id, qty);
     CartPage();
     showToast(`${product.title.slice(0, 30)}... added to cart`);
+  });
+
+  // NAVIGATE TO CHECKOUT
+  document.getElementById("buyNowBtn").addEventListener("click", () => {
+    addToCart(id, qty);
+    CartPage();
+    navigate("/checkout");
   });
 }
