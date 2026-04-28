@@ -8,7 +8,7 @@ export const setOrder = (total) => {
   const orderNum = Math.floor(100000 + Math.random() * 900000);
 
   orderStore.order = { orderNum: orderNum, total };
-  saveOrder(order);
+  saveOrder(orderStore.order);
 };
 
 export const getOrder = () => {

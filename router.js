@@ -1,6 +1,7 @@
 import { ProductsPage } from "./src/pages/products.page.js";
 import { ProductDetailsPage } from "./src/pages/product-details.page.js";
 import { CheckoutPage } from "./src/pages/checkout.page.js";
+import { OrderConfirmationPage } from "./src/pages/order-confirmation.page.js";
 
 export function router() {
   const path = window.location.hash.slice(1) || "/";
@@ -18,6 +19,10 @@ export function router() {
     {
       match: (path) => path === "/checkout",
       view: () => CheckoutPage(),
+    },
+    {
+      match: (path) => path === "/order-confirmation",
+      view: () => OrderConfirmationPage(),
     },
   ];
 
