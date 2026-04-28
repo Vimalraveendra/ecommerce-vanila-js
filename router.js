@@ -5,7 +5,7 @@ import { OrderConfirmationPage } from "./src/pages/order-confirmation.page.js";
 
 export function router() {
   const path = window.location.hash.slice(1) || "/";
-  const id = path.startsWith("/products/") && path.split("/")[2];
+  const id = path.startsWith("/products/") && Number(path.split("/")[2]);
 
   const routes = [
     {
